@@ -14,21 +14,21 @@ bool ktra(int x,int y, int n, int m){
 int sobuocdi(int x1, int y1, int x2, int y2, int n, int m){
     if(x1==x2 && y1==y2) return 0;
 
-    queue<pair<int, int>> q; // dữ liệu cặp, q: biến của hàng đợi lưu trữ x,y
-    vector<vector<int>> visited(n+1,vector<int>(m+1,-1)); //mảng 2 chiều, -1: tương ứng với vị trí này chưa dc thăm
+    queue<pair<int, int>> q; 
+    vector<vector<int>> visited(n+1,vector<int>(m+1,-1));
 
-    q.push({x1,y1}); // thêm x1,y1 vào đầu hàng đợi
-    visited[x1][y1] = 0; // số bước đi ban đầu =0
+    q.push({x1,y1}); 
+    visited[x1][y1] = 0; 
 
     while(!q.empty()){
-        auto [x,y] = q.front(); // q.front : trả về ptu đầu tiên của hàng đợi
-        q.pop(); // loại bỏ phần từ đầu tiên
+        auto [x,y] = q.front(); 
+        q.pop(); 
 
         for(int i=0;i<8;i++){
             int ax = x + dx[i];
             int ay = y + dy[i];
-            if(ktra(ax,ay,n,m) && visited[ax][ay] == -1){ // nếu thỏa mãn điều kiện và ch được thăm
-                visited[ax][ay] = visited[x][y] +1; // trả về giá trị và đánh dấu
+            if(ktra(ax,ay,n,m) && visited[ax][ay] == -1){ 
+                visited[ax][ay] = visited[x][y] +1; 
                 if(ax == x2 && ay == y2) return visited[ax][ay];
                 q.push({ax,ay});
             }
